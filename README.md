@@ -1,4 +1,11 @@
 # Carona Não App Mobile
+
+<strong>
+  Carona Não App Mobile - https://play.google.com/store/apps/details?id=com.coletivoeidi.caronanao<br/>
+  @copyright Copyright (c) 2016 Coletivo EIDI (site: https://sites.google.com/site/eidicoletivo) <br/>
+  @license - https://github.com/ColetivoEIDI/carona-nao-mobile/blob/master/LICENSE (GNU GENERAL PUBLIC LICENSE)
+ </strong>
+
 ## Folder "APP" of a project in ionic2
 
 # Contributing
