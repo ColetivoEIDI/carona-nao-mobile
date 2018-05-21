@@ -1,0 +1,38 @@
+page-add-pessoas {
+  .add {
+    display: block;
+    float: right;
+  }
+
+  .desativado {
+    visibility: hidden;
+  }
+
+  .ativado {
+    visibility: visible;
+  }
+
+  .comScroll {
+    height: 200px;
+    overflow: auto;
+  }
+
+  .semBorda {
+    outline: 0;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .headerMenu{
+    height: 30px;
+    line-height: 30px;
+    background-color: #b4b4b4;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .claro {
+    color: #969393;
+  }
+}

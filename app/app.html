@@ -1,0 +1,32 @@
+<ion-menu [content]="mycontent">
+  <ion-header>
+    <ion-navbar no-border-bottom color="navbarColor">
+      <ion-buttons start left>
+        <button ion-button menuClose>
+          <ion-icon name="close" color="white"></ion-icon>
+        </button>
+      </ion-buttons>
+
+      <ion-title> <p class="text-Default centro">Carona Não</p> </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-list-header class="headerMenu" color="corTopList">
+        Menu
+      </ion-list-header>
+      <ion-item class="menu" menuClose (click)="openPage(viagemPropriedades)">
+        <ion-icon name="paper-plane" item-left></ion-icon>
+        Criar Viagem
+      </ion-item>
+
+      <ion-item class="menu" menuClose (click)="openPage(devedores)">
+        <ion-icon name="analytics" item-left></ion-icon>
+        Receber
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

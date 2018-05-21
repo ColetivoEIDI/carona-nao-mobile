@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <ion-buttons start left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title> <p class="text-Default">Novo Passageiro</p> </ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="add-banco" (click)="pessoaSelecionada=null">
+        Selecionar
+      </ion-segment-button>
+      <ion-segment-button value="add-novo" (click)="pessoaSelecionada='criar'">
+        Criar Novo
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div [ngSwitch]="pet">
+    <ion-card *ngSwitchCase="'add-banco'">
+      <ion-list-header color="primary">
+        Adicione um passageiro já registrado:
+      </ion-list-header>
+      <ion-searchbar (ionInput)="getItems($event)" placeholder="Busca" class="semBorda"></ion-searchbar>
+      <ion-list radio-group class="comScroll" [(ngModel)]="pessoaSelecionada">
+        <div class="helpSentences" *ngIf='devedores.length < 1'>
+          <br><b>Não há passageiros registrados</b>
+          <div class="claro">
+            <br>
+            <br>
+            Clique em <b>criar novo</b> para adicionar um passageiro na viagem.
+            <br>
+            <b>Criar novo</b> serve adicionar passageiros que não aparecem aqui, ou seja,
+            ainda não foram registrados.
+          </div>
+        </div>
+        <ion-item *ngFor="let devedor of devedores">
+          <ion-label>
+            <h4 class="nome">{{devedor.nome}}</h4>
+            <h4 class="celular">{{devedor.tel}}</h4>
+          </ion-label>
+          <ion-radio checked="false" value={{devedor.tel}} ></ion-radio>
+        </ion-item>
+      </ion-list>
+   </ion-card>
+
+   <ion-card [ngClass]="{'ativado': pessoaSelecionada != 'criar'}" *ngSwitchCase="'add-novo'">
+     <ion-list>
+        <ion-list-header color="primary">
+          Adicione um passageiro ainda não registrado:
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Nome:</ion-label>
+          <ion-input type="text" [(ngModel)]="passageiroNovo.nome"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Celular:</ion-label>
+          <ion-input type="tel" placeholder = "(88) 8 8888-8888" [(ngModel)]="passageiroNovo.tel"></ion-input>
+        </ion-item>
+
+      </ion-list>
+   </ion-card>
+  </div>
+
+  <ion-card>
+   <ion-list>
+       <ion-list-header color="primary">
+          Quilometragem atual do veículo:
+       </ion-list-header>
+       <ion-item>
+         <ion-label> Ponto de partida </ion-label>
+         <ion-toggle checked="false" [(ngModel)]='checkedQuilometragem' (click)="quilometrosInput=''">
+         </ion-toggle>
+       </ion-item>
+       <ion-item class="ativado" *ngIf='checkedQuilometragem==false'>
+         <ion-label floating>Quilometragem</ion-label>
+         <ion-input type="number" [(ngModel)]="quilometrosInput"></ion-input>
+         <ion-icon name="speedometer" item-right></ion-icon>
+       </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button color="primary" icon-left outline (click)="dismiss()">
+      Cancelar
+    </button>
+
+    <button ion-button color="primary" icon-right class="add" (click)="addPassageiro()" [disabled]="!condicaoBotaoAdicionar()">
+      Adicionar
+      <ion-icon name='add-circle'></ion-icon>
+    </button>
+  </ion-toolbar>
+</ion-footer>

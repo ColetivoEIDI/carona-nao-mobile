@@ -1,0 +1,26 @@
+page-devedores {
+  .reaisDeve {
+    color: red;
+  }
+  .reaisPaga {
+    color: green;
+  }
+  .reaisZero{
+    color:yellow;
+  }
+
+  .topList {
+    display: block;
+    margin:no-margin;
+  }
+
+  [name="arrow-dropleft"] {
+    color: blue;
+    margin-left: 20px;
+    width: 200%;
+  }
+
+  [name="person"] {
+    color: #1E90FF;
+  }
+}

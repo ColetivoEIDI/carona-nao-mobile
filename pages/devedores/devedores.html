@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="navbarColor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" color="white"></ion-icon>
+    </button>
+
+    <ion-title> <p class="text-Default">Lista de Devedores</p> </ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top color="navbarColor">
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="Busca"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-list>
+    <ion-list-header class="topList" color="corTopList">
+      <ion-row>
+        <ion-col><span class="text-Default">NOME</span></ion-col>
+        <ion-col><span class="text-Default">DÉBITO</span></ion-col>
+      </ion-row>
+    </ion-list-header>
+    <div class="helpSentences" *ngIf='devedores.length < 1'>
+      <b>Não há devedores</b>
+      <br>Você ainda não criou nenhuma viagem.
+       Depois que criá-las, você encontrará devedores aqui.
+    </div>
+    <ion-item-sliding *ngFor="let devedor of devedores">
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <ion-row>
+          <ion-col width-50>
+            <h4 class="nome">{{devedor.nome}}</h4>
+            <h4 class="celular">{{devedor.celular}}</h4>
+          </ion-col>
+          <ion-col width-33>
+            <span class="reaisDeve" *ngIf="devedor.divida<0">      R$ {{devedor.divida.toFixed(2)}}    </span>
+            <span class="reaisPaga" *ngIf="devedor.divida==0">     R$ {{devedor.divida.toFixed(2)}}    </span>
+            <span class="reaisPaga" *ngIf="devedor.divida>0">      R$ {{devedor.divida.toFixed(2)}}    </span>
+          </ion-col>
+          <ion-col width-10>
+            <ion-icon class="slid" name="arrow-dropleft"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="edit" (click)="doEdit(devedor)">
+          <ion-icon name="build"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="secondary" (click)="inputSaldo(devedor)">
+          <ion-icon name="cash"></ion-icon>
+          Receber
+        </button>
+        <button ion-button color="danger" (click)="remove(devedor)">
+          <ion-icon name="trash"></ion-icon>
+          Excluir
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

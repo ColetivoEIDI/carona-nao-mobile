@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="navbarColor">
+    <ion-buttons start left>
+    </ion-buttons>
+
+    <ion-title> <p class="text-Default">Adicionar Passageiros</p> </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <!--<button ion-button clear  icon-left class="predef" (click)="doPredefinida()">
+      <ion-icon name='archive' is-active="false"></ion-icon>
+      Salvar
+  </button>
+-->
+  <ion-list>
+    <div class="helpSentences" *ngIf='passageiros.length < 1'>
+      <br><b>Não há passageiros</b>
+      <br>Adicione pelo menos um passageiro.
+      <br>
+      <br>
+      Obs.: não adicione o motorista. Adicione apenas os passageiros da viagem.
+    </div>
+    <ion-item-sliding *ngFor="let passageiro of passageiros">
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <ion-row>
+          <ion-col width-90="">
+            <h4 class="nome">{{passageiro.nome}}</h4>
+            <h4 class="celular">{{passageiro.celular}}</h4>
+          </ion-col>
+          <ion-col width-10>
+            <ion-icon class="slid" name="arrow-dropleft"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item-options>
+       <!-- <button ion-button color="edit" (click)="doEdit()">
+          <ion-icon name="build"></ion-icon>
+          Editar
+        </button>
+        -->
+        <button ion-button color="danger" (click)="doConfirm(passageiro)">
+          <ion-icon name="trash"></ion-icon>
+          Excluir
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="insertPessoa()">
+      <ion-icon name="person-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+   <!-- <button ion-button color="navbarColor" icon-left outline>
+      <ion-icon name='arrow-back'></ion-icon>
+      Voltar
+    </button>
+    -->
+    <button ion-button color="secondary" icon-right class="iniciarViagem" (click)='openPage()' [disabled]="passageiros.length < 1">
+      Iniciar Viagem
+      <ion-icon name='paper-plane'></ion-icon>
+    </button>
+  </ion-toolbar>
+</ion-footer>
